@@ -1,0 +1,13 @@
+---
+- name:  Get git version
+  hosts:  localhost
+
+  tasks:
+  - name:  print to Git version
+    command:  git --version
+    register:  result
+
+  - name: display
+    debug:
+      var:  result  
+  

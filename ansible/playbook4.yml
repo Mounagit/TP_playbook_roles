@@ -1,0 +1,4 @@
+--- # création de mon premier rôle
+- hosts:  localhost
+  roles:
+    - /vagrant_data/ansible/test-role-1

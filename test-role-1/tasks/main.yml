@@ -1,0 +1,16 @@
+---
+# tasks file for test-role-1
+- name: ensure apache is at the latest version # s'assurer qu'on a la dernière version d'apache
+  yum:
+    name: httpd
+    state: latest    
+- name: config apache
+  template: 
+    src: /srv/httpd.j2
+    dest: /etc/httpd.conf 
+  notify: # notifications permettant de relancer apache
+  - restart apache
+- name: ensure apache is running # tâche pour starter le service 
+  service:
+    name: httpd
+    state: started

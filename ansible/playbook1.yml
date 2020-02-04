@@ -1,0 +1,27 @@
+---
+- hosts:  localhost
+  become:  yes
+  tasks:
+  - name:  install apache
+    yum:
+      name:  httpd
+      state:  latest
+  - name:  create index.html file
+    file:
+      name:  /var/www/html/index.html
+      state:  touch
+  - name:  add web content
+    line file: 
+      line:  "Hello world"
+      path: /var/www/html/index.html
+  - name:  start httpd
+    service:
+      name:  httpd
+      state:  started
+  - name:  Insert/Update HTML surrounded by custom markers after <body> line
+    blockinfile:
+      path:  /var/www/html/index.html
+      marker:  "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+      insertafter:  "<body>"
+      block: |
+        <p><img src="https://https://cdn-media.rtl.fr/cache/69CeEMxRNjxpOJOve4NLVw/880v587-0/online/image/2019/0825/7798223325_un-chat-illustration.jpg</p>

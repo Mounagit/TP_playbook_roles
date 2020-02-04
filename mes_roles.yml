@@ -1,0 +1,7 @@
+--- # création de mon premier rôle
+- hosts: localhost
+  become: yes
+  roles:
+   - test-role-1
+   - role_jenkins
+   

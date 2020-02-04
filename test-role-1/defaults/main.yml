@@ -1,0 +1,4 @@
+---
+# defaults file for test-role-1
+ http_port: 85
+ max_clients: 200

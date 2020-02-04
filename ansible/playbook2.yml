@@ -1,0 +1,29 @@
+---
+#installation de la derniere version d'apache avec ansible
+- hosts:  localhost 
+  become:  yes #se mettre en root
+  vars: # création de la variable http_port afin de pouvoir modifier sa valeur 
+    http_port: 85
+    max_clients: 200
+  remote_user: root
+  tasks: # listes des tâches à effectuer 
+  - name: ensure apache is at the latest version # s'assurer qu'on a la dernière version d'apache
+    yum:
+      name: httpd
+      state: latest    
+  - name: config apache
+    template: # module template, afin de créer un modèle pour pouvoir variabiliser la donnée souhaitée, ici le numero de port
+      src: /srv/httpd.j2
+      dest: /etc/httpd.conf 
+    notify: # notifications permettant de relancer apache
+    - restart apache
+  - name: ensure apache is running # tâche pour starter le service 
+    service:
+      name: httpd
+      state: started
+  handlers: # va effectuer ce que la notification indique
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+      listen:  "restart httpd"
