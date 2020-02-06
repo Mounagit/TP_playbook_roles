@@ -1,0 +1,6 @@
+---
+# vars file for role_fichier.yml
+liste_fichiers: 
+ - fichier_encrypte.txt
+ - fichier2.txt
+ - fichier3.txt
