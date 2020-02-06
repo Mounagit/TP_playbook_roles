@@ -1,5 +1,5 @@
 --- # création de mon premier rôle
-- hosts:  my_host
+- hosts: my_host
   become: yes
   roles:
-    - /vagrant_data/role_fichier 
+   - /vagrant_data/role_fichier 
