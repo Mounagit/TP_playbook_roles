@@ -1,7 +1,6 @@
 --- # création de mon premier rôle
-- hosts: localhost
+- hosts: [my_host]
   become: yes
   roles:
-   - test-role-1
-   - role_jenkins
+   - /vagrant_data/role_tomcat
    
